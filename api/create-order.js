@@ -1,9 +1,8 @@
 const express = require("express");
+const serverless = require("serverless-http");
 require("dotenv").config();
 const Razorpay = require("razorpay");
 const { emailService } = require("./utils/emailService.js");
-// const internRoute = require("./route/internRoute.js");
-// const courseRoute = require("./route/courseRoute.js");
 
 const app = express();
 app.use(express.json());
@@ -19,7 +18,7 @@ const razorpay = new Razorpay({
 
 // Create payment order
 const ALLOWED_AMOUNTS = [240, 480, 600, 800, 900];
-app.post("/create-order", async (req, res) => {
+app.post("/api/create-order", async (req, res) => {
   try {
     const { name, email, contact, address, pincode, quantity, amount } = req.body;
     console.log(req.body);
@@ -85,5 +84,4 @@ app.post("/create-order", async (req, res) => {
   }
 });
 
-module.exports = app;
-module.exports.handler = serverless(app);
+module.exports = serverless(app);
