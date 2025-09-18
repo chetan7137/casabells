@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed</title>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '655470217161726');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=655470217161726&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        body {
+            background-color: #1a1a1a;
+            /* Dark background */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #2c2c2c;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .checkmark {
+            color: #ffd700;
+            font-size: 80px;
+            line-height: 1;
+        }
+
+        h1 {
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e6c800;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="checkmark">&#10003;</div>
+        <h1>Thank you, <span id="userName">Customer</span>!</h1>
+        <p>Your order of <span class="highlight">₹<span id="orderAmount">0</span></span> has been confirmed.</p>
+        <p>A confirmation has been sent to <span class="highlight" id="userEmail">example@email.com</span>.</p>
+        <a href="./index.html" class="btn">Back</a>
+        <a href="https://www.instagram.com/uniquehouseholds.store?igsh=bGlnaHJiamJnd3R4" class="btn">Explore Our Products</a>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("name") || "Customer";
+        const email = params.get("email") || "your email";
+        const amount = params.get("amount") || "0";
+
+        document.getElementById("userName").textContent = name;
+        document.getElementById("userEmail").textContent = email;
+        document.getElementById("orderAmount").textContent = amount;
+    </script>
+
+</body>
+
+</html>

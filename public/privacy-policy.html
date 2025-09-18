@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy</title>
+  <!-- Tailwind Play CDN for quick prototyping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bg: {
+                            DEFAULT: '#0b0b0b',
+                            soft: '#121212',
+                            card: '#151515',
+                            lift: '#1b1b1b',
+                            border: '#262626'
+                        },
+                        brand: { DEFAULT: '#facc15', dark: '#ca8a04' },
+                        accent: '#22d3ee',
+                    },
+                    boxShadow: {
+                        'soft': '0 8px 24px rgba(0,0,0,.25)',
+                        'glow': '0 0 0 3px rgba(250, 204, 21, .25)'
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+    /* Small extra polish beyond Tailwind utilities */
+    .glass {
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 antialiased">
+    <header
+        class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-bg/70 bg-bg/80 border-b border-bg-border">
+        <div class="mx-auto max-w-7xl px-4">
+            <div class="flex items-center justify-between py-3">
+                <!-- Brand -->
+                <a href="#" class="flex items-center gap-3">
+                    <span class="font-semibold tracking-wide text-white">Casabells</span>
+                </a>
+
+                <!-- Center Nav (desktop) -->
+                <nav class="hidden md:flex items-center gap-6 text-sm text-neutral-300">
+                    <a class="hover:text-white" href="/index.html">Home</a>
+                    <a class="hover:text-white" href="#">Shop</a>
+                    <a class="hover:text-white" href="#">Blog</a>
+                    <a class="hover:text-white" href="#">Tracking</a>
+                    <a class="hover:text-white" href="#">Contact</a>
+                    <a class="hover:text-white" href="#">Corporate & Bulk</a>
+                </nav>
+
+                <!-- Right Controls -->
+                <div class="flex items-center gap-4">
+                    <!-- Mobile menu -->
+                    <button id="menuBtn" class="md:hidden p-2 rounded-md hover:bg-bg-lift" aria-label="Menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-300" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile nav -->
+            <div id="mobileNav" class="md:hidden hidden pb-3">
+                <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-300">
+                    <a class="hover:text-white" href="#">Home</a>
+                    <a class="hover:text-white" href="#">Shop</a>
+                    <a class="hover:text-white" href="#">Blog</a>
+                    <a class="hover:text-white" href="#">Tracking</a>
+                    <a class="hover:text-white" href="#">Corporate & Bulk</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+  <main class="container mx-auto px-6 lg:px-12 mt-10">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Sidebar / TOC -->
+      <aside class="lg:col-span-1 sticky top-8 self-start">
+        <div class="glass p-4 rounded-2xl border border-white/30 shadow-md">
+          <h2 class="text-sm font-semibold text-slate-700 mb-3">On this page</h2>
+          <nav class="flex flex-col gap-2 text-sm text-slate-600">
+            <a href="#overview" class="py-2 px-3 rounded hover:bg-indigo-50">Overview</a>
+            <a href="#data" class="py-2 px-3 rounded hover:bg-indigo-50">Data we collect</a>
+            <a href="#usage" class="py-2 px-3 rounded hover:bg-indigo-50">How we use it</a>
+            <a href="#share" class="py-2 px-3 rounded hover:bg-indigo-50">Sharing & Third parties</a>
+            <a href="#rights" class="py-2 px-3 rounded hover:bg-indigo-50">Your rights</a>
+            <a href="#security" class="py-2 px-3 rounded hover:bg-indigo-50">Security</a>
+            <a href="#contact" class="py-2 px-3 rounded hover:bg-indigo-50">Contact</a>
+          </nav>
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-gradient-to-br from-white via-indigo-50 to-white/60 border border-white/40 shadow-inner">
+          <h3 class="text-xs font-semibold text-indigo-700">Quick summary</h3>
+          <p class="mt-2 text-sm text-slate-600">We collect minimal data, use industry-standard protection, don't sell data, and give you control over your information.</p>
+          <ul class="mt-3 text-xs text-slate-500 space-y-1">
+            <li>• Data minimization</li>
+            <li>• Transparency</li>
+            <li>• Access & deletion</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <article class="lg:col-span-3">
+        <section id="overview" class="mb-8">
+          <div class="p-6 rounded-2xl glass border border-white/20 shadow-lg">
+            <div class="flex items-start gap-4">
+              <div class="p-3 rounded-lg bg-indigo-50/60 border border-indigo-100">
+                <!-- shield icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2l7 4v6c0 5-3.8 9.7-7 10-3.2-.3-7-5-7-10V6l7-4z" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-2xl font-semibold">Overview</h2>
+                <p class="mt-2 text-slate-600">This privacy policy explains what data we collect, why we collect it, and how you can manage or remove your information. Short version: we keep things minimal and useful.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="data" class="mb-8">
+          <h3 class="text-xl font-semibold mb-4">Data we collect</h3>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-5 rounded-xl bg-white border shadow-sm">
+              <h4 class="font-semibold">Personal info</h4>
+              <p class="mt-2 text-sm text-slate-600">Name, email address, billing details you provide when you sign up or make a purchase.</p>
+              <ul class="mt-3 text-sm text-slate-500 space-y-1">
+                <li>• Name & contact</li>
+                <li>• Payment & billing</li>
+                <li>• Profile settings</li>
+              </ul>
+            </div>
+
+            <div class="p-5 rounded-xl bg-white border shadow-sm">
+              <h4 class="font-semibold">Usage data</h4>
+              <p class="mt-2 text-sm text-slate-600">Non-identifying data about how you use the site — pages visited, features used, and technical info (browser, device, IP).</p>
+              <ul class="mt-3 text-sm text-slate-500 space-y-1">
+                <li>• Analytics (aggregated)</li>
+                <li>• Crash and performance logs</li>
+                <li>• Cookies & local storage</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-6 p-5 rounded-xl bg-gradient-to-r from-white to-indigo-50 border border-white/30">
+            <h4 class="font-semibold">Cookies & tracking</h4>
+            <p class="mt-2 text-sm text-slate-600">We use cookies for essential site functionality and to improve the experience. You can control cookie preferences in your browser; essential cookies cannot be turned off because they power basic features.</p>
+          </div>
+        </section>
+
+        <section id="usage" class="mb-8">
+          <h3 class="text-xl font-semibold mb-4">How we use data</h3>
+
+          <div class="space-y-4">
+            <div class="p-4 rounded-lg bg-white border shadow-sm">
+              <h5 class="font-medium">Provide & improve services</h5>
+              <p class="mt-1 text-sm text-slate-600">To deliver the features you use, process payments, and improve the product with aggregated analytics.</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-white border shadow-sm">
+              <h5 class="font-medium">Communication</h5>
+              <p class="mt-1 text-sm text-slate-600">To send account-related notices, billing receipts, and updates you opt into.</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-white border shadow-sm">
+              <h5 class="font-medium">Legal & safety</h5>
+              <p class="mt-1 text-sm text-slate-600">To protect our rights, comply with the law, and prevent abuse.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="share" class="mb-8">
+          <h3 class="text-xl font-semibold mb-4">Sharing & third parties</h3>
+          <p class="text-sm text-slate-600">We never sell your personal data. We may share limited data with:</p>
+
+          <ul class="mt-3 space-y-3 text-sm text-slate-600">
+            <li class="flex gap-3 items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 mt-1" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016.882 3H3.118a2 2 0 00-1.115 2.884z" /></svg>
+              <div>
+                <strong>Service providers</strong> — payment processors, analytics providers, hosting; they process data on our behalf under contract.
+              </div>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 mt-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2H7a1 1 0 000 2h2v6a1 1 0 102 0V9h2a1 1 0 100-2h-2z" clip-rule="evenodd"/></svg>
+              <div>
+                <strong>Legal requests</strong> — if required by law, we may disclose data to comply with legal obligations.
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section id="rights" class="mb-8">
+          <h3 class="text-xl font-semibold mb-4">Your rights</h3>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-lg bg-white border shadow-sm">
+              <h6 class="font-medium">Access</h6>
+              <p class="text-sm text-slate-600 mt-1">Request a copy of your personal data.</p>
+            </div>
+            <div class="p-4 rounded-lg bg-white border shadow-sm">
+              <h6 class="font-medium">Rectify</h6>
+              <p class="text-sm text-slate-600 mt-1">Update or correct inaccurate information.</p>
+            </div>
+            <div class="p-4 rounded-lg bg-white border shadow-sm">
+              <h6 class="font-medium">Delete</h6>
+              <p class="text-sm text-slate-600 mt-1">Ask us to remove your data (subject to legal retention requirements).</p>
+            </div>
+          </div>
+
+          <p class="mt-4 text-sm text-slate-500">To exercise your rights, contact us at the email below. We respond within a reasonable timeframe and may ask for identity verification to protect your privacy.</p>
+        </section>
+
+        <section id="security" class="mb-8">
+          <h3 class="text-xl font-semibold mb-4">Security</h3>
+          <p class="text-sm text-slate-600">We use industry-standard safeguards such as encryption in transit (TLS), secure backups, and limited access controls. No system is 100% secure — we continuously monitor and improve.</p>
+
+          <div class="mt-4 p-4 rounded-lg bg-gradient-to-r from-white to-pink-50 border shadow-sm">
+            <strong class="text-sm">Breach notification:</strong>
+            <p class="text-sm text-slate-600 mt-2">If a breach affects your personal data, we'll notify affected individuals and regulators as required by law.</p>
+          </div>
+        </section>
+
+        <section id="contact" class="mb-10">
+          <h3 class="text-xl font-semibold mb-4">Contact & changes</h3>
+
+          <div class="p-6 rounded-2xl bg-white border shadow-lg flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-1">
+              <p class="text-sm text-slate-600">Questions, requests, or concerns? Reach out:</p>
+              <ul class="mt-3 text-sm text-slate-700 space-y-1">
+                <li><strong>Email:</strong> <a class="text-indigo-600 hover:underline" href="mailto:privacy@example.com">privacy@example.com</a></li>
+                <li><strong>Address:</strong> 123 Example St, City, Country</li>
+              </ul>
+            </div>
+            <div class="w-full md:w-56">
+              <a href="mailto:privacy@example.com" class="inline-flex items-center justify-center w-full py-2 px-4 rounded-lg bg-indigo-600 text-white font-medium shadow hover:brightness-105">Contact Privacy Team</a>
+            </div>
+          </div>
+
+          <p class="mt-4 text-xs text-slate-500">Last updated: September 17, 2025</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+    <!-- Newsletter + Footer -->
+    <footer class="bg-[rgb(11_11_11)] mt-20 border-t border-bg-border">
+        <div class="mx-auto max-w-7xl px-4 py-10">
+            <div class="grid gap-8 md:grid-cols-4">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="text-white font-semibold tracking-wide">Casabells</span>
+                    </div>
+                    <div class="flex gap-3 text-neutral-400">
+                        <a class="hover:text-white" href="#">Instagram</a>
+                        <a class="hover:text-white" href="#">YouTube</a>
+                        <a class="hover:text-white" href="#">X</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="mb-3 font-semibold text-white">Quick links</h4>
+                    <ul class="space-y-2 text-sm text-neutral-300">
+                        <li><a class="hover:text-white" href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a class="hover:text-white" href="/refund-policy.html">Refund Policy</a></li>
+                        <li><a class="hover:text-white" href="/shipping-policy.html">Shipping Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="mb-3 font-semibold text-white">Stay updated</h4>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Email address"
+                            class="w-full rounded-lg border border-bg-border bg-transparent px-3 py-2 text-sm outline-none focus:border-brand/60" />
+                        <button
+                            class="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-black hover:bg-brand-dark">Join</button>
+                    </div>
+                    <p class="mt-2 text-xs text-neutral-400">Get news, launches, and offers.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t border-bg-border pt-6 text-xs text-neutral-500">
+                © <span id="year"></span> All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+  <script>
+    // small helper to keep year current
+            const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    document.getElementById('year').textContent = new Date().getFullYear();
+   
+    // Mobile menu
+    $('#menuBtn').addEventListener('click', () => $('#mobileNav').classList.toggle('hidden'));
+  </script>
+</body>
+</html>

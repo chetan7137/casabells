@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Kamdhenu</title>
+
+    <!-- Tailwind CDN (no other libraries) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            color: #facc15; /* Tailwind's yellow-400 */
+            font-size: 20px; /* optional: make arrows larger */
+        }
+
+        .swiper-pagination-bullet-active {
+            background:#facc15 !important;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bg: {
+                            DEFAULT: '#0b0b0b',
+                            soft: '#121212',
+                            card: '#151515',
+                            lift: '#1b1b1b',
+                            border: '#262626'
+                        },
+                        brand: { DEFAULT: '#facc15', dark: '#ca8a04' },
+                        accent: '#22d3ee',
+                    },
+                    boxShadow: {
+                        'soft': '0 8px 24px rgba(0,0,0,.25)',
+                        'glow': '0 0 0 3px rgba(250, 204, 21, .25)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '655470217161726');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=655470217161726&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        /* tiny helpers */
+        ::selection {
+            background: #facc15;
+            color: #111;
+        }
+
+        .marquee {
+            display: flex;
+            gap: 2rem;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* thin scrollbar for desktop */
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 9999px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #121212
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body class="min-h-full bg-bg text-neutral-100 antialiased">
+    <!-- Announcement strip -->
+    <div class="relative overflow-hidden bg-bg-soft border-b border-bg-border text-xs text-neutral-300">
+        <div class="marquee py-2">
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Made in Bharat</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Free Shipping</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span> 5%
+                off on Prepaid Orders</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Kamdhenu Cow Figurine!</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Great Offers</div>
+
+            <!-- clone for seamless loop -->
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Made in Bharat</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Free Shipping</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span> 5%
+                off on Prepaid Orders</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                New: Kamdhenu Figurine</div>
+            <div class="flex items-center gap-2"><span class="inline-block h-1.5 w-1.5 rounded-full bg-brand"></span>
+                Free shipping over ₹199</div>
+        </div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header
+        class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-bg/70 bg-bg/80 border-b border-bg-border">
+        <div class="mx-auto max-w-7xl px-4">
+            <div class="flex items-center justify-between py-3">
+                <!-- Brand -->
+                <a href="#" class="flex items-center gap-3">
+                    <span class="font-semibold tracking-wide">Casabells</span>
+                </a>
+
+                <!-- Center Nav (desktop) -->
+                <nav class="hidden md:flex items-center gap-6 text-sm text-neutral-300">
+                    <a class="hover:text-white" href="#">Home</a>
+                    <a class="hover:text-white" href="#">Shop</a>
+                    <a class="hover:text-white" href="#">Blog</a>
+                    <a class="hover:text-white" href="#">Tracking</a>
+                    <a class="hover:text-white" href="#">Corporate & Bulk</a>
+                </nav>
+
+                <!-- Right Controls -->
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex items-center gap-2 rounded-md border border-bg-border px-2 py-1">
+                        <span class="text-xs text-neutral-400">INR</span>
+                        <span class="text-sm">₹</span>
+                    </div>
+                    <!-- Wishlist -->
+                    <!-- Cart -->
+                    <button id="cartBtn" class="relative p-2 rounded-md hover:bg-bg-lift" aria-label="Cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-300" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M2.25 3a.75.75 0 0 0 0 1.5h2.243l2.59 10.68a2.25 2.25 0 0 0 2.19 1.77h7.727a2.25 2.25 0 0 0 2.19-1.77l1.5-7.5A.75.75 0 0 0 20.15 6H6.911L6.21 3.49A1.5 1.5 0 0 0 4.744 2.25H2.25Z" />
+                            <circle cx="9" cy="20" r="1.5" />
+                            <circle cx="18" cy="20" r="1.5" />
+                        </svg>
+                        <span id="cartCount"
+                            class="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-brand px-1.5 text-xs font-semibold text-black">0</span>
+                    </button>
+                    <!-- Mobile menu -->
+                    <button id="menuBtn" class="md:hidden p-2 rounded-md hover:bg-bg-lift" aria-label="Menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-300" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile nav -->
+            <div id="mobileNav" class="md:hidden hidden pb-3">
+                <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-300">
+                    <a class="hover:text-white" href="#">Home</a>
+                    <a class="hover:text-white" href="#">Shop</a>
+                    <a class="hover:text-white" href="#">Blog</a>
+                    <a class="hover:text-white" href="#">Tracking</a>
+                    <a class="hover:text-white" href="#">Corporate & Bulk</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Secondary offer bar -->
+    <div class="bg-bg-soft border-b border-bg-border text-center text-xs text-neutral-300">
+        <div class="mx-auto max-w-7xl py-2 px-4">FREE SHIPPING OVER ₹199</div>
+    </div>
+
+    <main class="mx-auto max-w-7xl px-4 py-8">
+        <!-- Breadcrumb -->
+        <!-- <nav aria-label="Breadcrumb" class="mb-6 text-xs text-neutral-400">
+            <ol class="flex items-center gap-2">
+                <li><a class="hover:text-white" href="#">Home</a></li>
+                <li>/</li>
+                <li><a class="hover:text-white" href="#">Books</a></li>
+                <li>/</li>
+                <li class="text-neutral-300">Bhaktamar Stotra 48 gatha — Pandulipi Format</li>
+            </ol>
+        </nav> -->
+
+        <!-- Product Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Gallery -->
+            <div class="lg:col-span-5 min-[425px]:max-lg:grid max-lg:grid-cols-[4fr_1fr] gap-x-6">
+                <div id="mainImageWrap"
+                    class="relative aspect-square overflow-hidden rounded-lg bg-bg-card ring-1 ring-bg-border">
+                    <img id="mainImage" alt="Product image" class="size-full object-cover" src="assets/images/2.webp" />
+                </div>
+                <div class="mt-3 grid min-[425px]:max-lg:grid-cols-1 grid-cols-5 gap-2">
+                    <!-- Thumbs -->
+                    <button data-img="assets/images/2.webp"
+                        class="thumb ring-2 ring-brand rounded-md overflow-hidden focus:outline-none">
+                        <img class="aspect-square object-cover" src="assets/images/2.webp" alt="thumb 1">
+                    </button>
+                    <button data-img="assets/images/1.webp"
+                        class="thumb rounded-md overflow-hidden ring-1 ring-bg-border hover:ring-brand/50">
+                        <img class="aspect-square object-cover" src="assets/images/1.webp" alt="thumb 2">
+                    </button>
+                    <button data-img="assets/images/3.webp"
+                        class="thumb rounded-md overflow-hidden ring-1 ring-bg-border hover:ring-brand/50">
+                        <img class="aspect-square object-cover" src="assets/images/3.webp" alt="thumb 4">
+                    </button>
+                    <button data-img="assets/images/4.webp"
+                        class="thumb rounded-md overflow-hidden ring-1 ring-bg-border hover:ring-brand/50">
+                        <img class="aspect-square object-cover" src="assets/images/4.webp" alt="thumb 5">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Details -->
+            <div class="lg:col-span-7 space-y-6">
+                <!-- Title + meta -->
+                <div class="space-y-2">
+                    <p class="text-[11px] uppercase tracking-wider text-neutral-400">Casabells</p>
+                    <h1 class="text-2xl sm:text-3xl font-semibold leading-tight">
+                        Oxidised Gold Finished Kamdhenu Cow & Calf Figurine Idol for Home Decorative/Office /Gifting /
+                        Pooja Like Brass and Metal Showpiece Statue Decorative Showpiece (Polyresin, Gold)
+                    </h1>
+
+                    <div class="flex flex-wrap items-center gap-3 text-sm">
+                        <div class="flex items-center gap-1">
+                            <svg class="h-4 w-4 text-brand" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 0 0-1.175 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z" />
+                            </svg>
+                            <span>4.9</span>
+                            <a href="#reviews" class="text-neutral-400 hover:text-white">(429 reviews)</a>
+                        </div>
+                        <div class="hidden sm:block text-neutral-500">•</div>
+                        <div class="flex items-center gap-1 text-emerald-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M9 12.75 4.5 8.25l-1.5 1.5L9 15.75l12-12-1.5-1.5z" />
+                            </svg>
+                            In stock
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price block -->
+                <div class="rounded-lg border border-bg-border bg-bg-card p-4">
+                    <div class="flex flex-wrap items-end justify-between gap-4">
+                        <div class="space-y-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-2xl sm:text-3xl font-bold text-white">₹240</span>
+                            </div>
+                            <p class="text-xs text-neutral-400">Inclusive of all taxes</p>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-4 max-[425px]:items-start max-[425px]:flex-col max-[425px]:w-full">
+                            <!-- Quantity Select -->
+                            <div class="flex items-center gap-5">
+                                <div class="flex items-center rounded-lg border border-bg-border">
+                                    <select id="qtySelect" class="px-3 py-2 bg-transparent text-center outline-none">
+                                        <option class="text-white bg-black" value="1">1</option>
+                                        <option class="text-white bg-black" value="2">2</option>
+                                        <option class="text-white bg-black" value="3">3</option>
+                                        <option class="text-white bg-black" value="4">4</option>
+                                        <option class="text-white bg-black" value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <!-- Rate Display -->
+                                <span id="rateDisplay" class="font-semibold text-lg">₹240</span>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="flex gap-2">
+                                <!-- <button id="addToCart"
+                                    class="inline-flex items-center justify-center rounded-lg bg-brand px-4 py-2 text-black font-semibold hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand/40 shadow-soft">
+                                    Add to cart
+                                </button> -->
+                                <button id="buyNow1"
+                                    class="inline-flex items-center justify-center rounded-lg border border-brand/60 px-4 py-2 text-brand hover:bg-brand/10 font-semibold">
+                                    Buy now
+                                </button>
+
+                                <!-- https://rzp.io/rzp/nJFsAVk9  => 900 -->
+                                <!-- https://rzp.io/rzp/6ULLyAa8 => 800 -->
+                                <!-- https://rzp.io/rzp/bdVpkbsl => 600 -->
+                                <!-- https://rzp.io/rzp/t0tHRjgO => 480 -->
+                                <!-- https://rzp.io/rzp/JPqsIGj => 240 -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 grid items-center gap-3 sm:grid-cols-3 text-xs text-neutral-300">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-bg-lift ring-1 ring-bg-border">
+                                <svg class="h-4 w-4 text-brand" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M3 7.5h13.5l3 3V18A2.25 2.25 0 0 1 17.25 20.25H6A3 3 0 0 1 3 17.25v-9.75Z" />
+                                </svg>
+                            </span>
+                            Secure checkout
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo + delivery -->
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <div class="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 cursor-pointer"
+                        onclick="handleBuy3()">
+                        <p class="text-xs font-semibold text-amber-300/80">HOT SELLER!</p>
+                        <p class="text-sm text-amber-200">Buy 3 for ₹600 only!</p>
+                        <p class="text-xs text-amber-300/80">Auto-applied at checkout.</p>
+                    </div>
+                    <div class="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 cursor-pointer"
+                        onclick="handleBuy5()">
+                        <p class="text-sm text-amber-200">Buy 5 for ₹900 only!</p>
+                        <p class="text-xs text-amber-300/80">Auto-applied at checkout.</p>
+                    </div>
+                    <div class="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3 cursor-pointer"
+                        onclick="handleChatPopup()">
+                        <p class="text-sm text-emerald-200">For Bulk Orders!</p>
+                        <p class="text-xs text-emerald-300/80">Chat With Us</p>
+                    </div>
+                    <div class="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-3">
+                        <p class="text-sm text-emerald-200">Order today & get delivery in 3-5 days</p>
+                        <p class="text-xs text-emerald-300/80">Pan-India shipping</p>
+                    </div>
+
+                </div>
+
+                <!-- Pincode check -->
+                <div class="rounded-lg border border-bg-border bg-bg-card p-4">
+                    <label for="pincode" class="block text-sm text-neutral-300 mb-2">Check delivery availability</label>
+                    <div class="flex gap-2 flex-wrap">
+                        <input id="pincode" type="number" inputmode="numeric" maxlength="6" placeholder="Enter pincode"
+                            class="flex-1 rounded-lg border border-bg-border bg-transparent px-3 py-2 outline-none focus:border-brand/60" />
+                        <button id="checkPin"
+                            class="rounded-lg bg-bg-lift px-4 py-2 ring-1 ring-bg-border hover:bg-brand/10 hover:text-brand">Check</button>
+                    </div>
+                    <p id="pinResult" class="mt-2 text-xs text-neutral-400"></p>
+                </div>
+
+                <!-- Description -->
+                <div class="rounded-lg border border-bg-border bg-bg-card">
+                    <button class="flex w-full items-center justify-between px-4 py-3 text-left">
+                        <span class="font-medium">Description</span>
+                    </button>
+                    <div class="space-y-3 px-4 pb-4 text-sm text-neutral-300">
+                        <p>Type: Kaamdhenu Handicraft & Artifact Showpiece</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><span class="font-semibold">Material:</span> Polyresin</li>
+                            <li><span class="font-semibold">Suitable For:</span> Table</li>
+                            <li><span class="font-semibold">Dimensions:</span> 7.5 cm x 5.5 cm</li>
+                            <li>Made in Bharat</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Small "share" row -->
+                <!-- <div class="flex items-center gap-3 text-sm text-neutral-400">
+                    <span class="inline-flex items-center gap-2">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .17 1l-8.5 4.25a3 3 0 1 0 0 3.5L15.17 17a3 3 0 0 0-.17 1h.17A3 3 0 1 0 18 14a2.99 2.99 0 0 0-2.65 1.64L6.85 11.4A3 3 0 0 0 9 9a3 3 0 0 0-2.15-2.86l8.5-4.25A3 3 0 0 0 18 5Z" />
+                        </svg>
+                        Share
+                    </span>
+                    <span>•</span>
+                    <button class="flex items-center gap-1 hover:text-white">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M11.645 20.91 3.6 13.2A5.75 5.75 0 0 1 11.09 5.1l.91.9.9-.9A5.75 5.75 0 0 1 21 13.24l-8.045 7.67a.75.75 0 0 1-1.31 0Z" />
+                        </svg>
+                        Add to wishlist
+                    </button>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section id="reviews" class="mt-16">
+            <h2 class="mb-4 text-xl font-semibold">Customer Reviews</h2>
+
+            <div class="grid gap-6 md:grid-cols-[320px,1fr]">
+                <!-- Summary -->
+                <div class="rounded-lg border border-bg-border bg-bg-card p-4">
+                    <div class="flex items-end gap-3">
+                        <p class="text-4xl font-bold">4.8</p>
+                        <div class="flex items-center gap-1 text-brand">
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 0 0-1.175 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z" />
+                            </svg>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 0 0-1.175 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z" />
+                            </svg>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 0 0-1.175 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z" />
+                            </svg>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 0 0-1.175 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z" />
+                            </svg>
+                            <svg class="h-5 w-5 text-neutral-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M10 2.5c.5 0 1 .3 1.1.8l1 3.2c.1.3.4.5.7.5h3.5c.7 0 1 .9.5 1.3l-2.8 2a1 1 0 0 0-.4 1.1l1.1 3.2c.2.7-.6 1.3-1.2.9l-2.8-2a1 1 0 0 0-1.2 0l-2.8 2c-.6.4-1.4-.2-1.2-.9l1.1-3.2a1 1 0 0 0-.4-1.1l-2.8-2c-.5-.4-.2-1.3.5-1.3h3.5c.3 0 .6-.2.7-.5l1-3.2c.1-.5.6-.8 1.1-.8Z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-xs text-neutral-400">Based on 429 reviews</p>
+
+                    <!-- Rating bars -->
+                    <div class="mt-4 space-y-2 text-sm">
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 text-neutral-300">5 star</span>
+                            <div class="h-2 w-full rounded bg-bg-lift">
+                                <div style="width:86%" class="h-2 rounded bg-brand"></div>
+                            </div>
+                            <span class="w-8 text-right text-neutral-400">86%</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 text-neutral-300">4 star</span>
+                            <div class="h-2 w-full rounded bg-bg-lift">
+                                <div style="width:10%" class="h-2 rounded bg-brand/80"></div>
+                            </div>
+                            <span class="w-8 text-right text-neutral-400">10%</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 text-neutral-300">3 star</span>
+                            <div class="h-2 w-full rounded bg-bg-lift">
+                                <div style="width:3%" class="h-2 rounded bg-brand/60"></div>
+                            </div>
+                            <span class="w-8 text-right text-neutral-400">3%</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 text-neutral-300">2 star</span>
+                            <div class="h-2 w-full rounded bg-bg-lift">
+                                <div style="width:1%" class="h-2 rounded bg-brand/50"></div>
+                            </div>
+                            <span class="w-8 text-right text-neutral-400">1%</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 text-neutral-300">1 star</span>
+                            <div class="h-2 w-full rounded bg-bg-lift">
+                                <div style="width:0%" class="h-2 rounded bg-brand/40"></div>
+                            </div>
+                            <span class="w-8 text-right text-neutral-400">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews list -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-neutral-400">Most Recent</div>
+                        <div class="flex items-center gap-2">
+                            <button id="filterAll"
+                                class="rounded-lg bg-bg-card px-3 py-1.5 text-xs ring-1 ring-bg-border hover:bg-bg-lift">All</button>
+                            <button id="filterVerified"
+                                class="rounded-lg bg-bg-card px-3 py-1.5 text-xs ring-1 ring-bg-border hover:bg-bg-lift">Verified</button>
+                        </div>
+                    </div>
+
+                    <ul id="reviewList" class="space-y-3">
+                        <!-- Reviews injected by JS -->
+                    </ul>
+
+                    <div class="pt-2">
+                        <button id="loadMore"
+                            class="mx-auto block rounded-lg border border-bg-border bg-bg-card px-4 py-2 text-sm hover:bg-bg-lift">Load
+                            more</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Newsletter + Footer -->
+    <footer class="mt-20 border-t border-bg-border">
+        <div class="mx-auto max-w-7xl px-4 py-10">
+            <div class="grid gap-8 md:grid-cols-4">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="font-semibold tracking-wide">Casabells</span>
+                    </div>
+                    <div class="flex gap-3 text-neutral-400">
+                        <a class="hover:text-white" href="#">Instagram</a>
+                        <a class="hover:text-white" href="#">YouTube</a>
+                        <a class="hover:text-white" href="#">X</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="mb-3 font-semibold">Quick links</h4>
+                    <ul class="space-y-2 text-sm text-neutral-300">
+                        <li><a class="hover:text-white" href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a class="hover:text-white" href="/refund-policy.html">Refund Policy</a></li>
+                        <li><a class="hover:text-white" href="/shipping-policy.html">Shipping Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="mb-3 font-semibold">Stay updated</h4>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Email address"
+                            class="w-full rounded-lg border border-bg-border bg-transparent px-3 py-2 text-sm outline-none focus:border-brand/60" />
+                        <button
+                            class="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-black hover:bg-brand-dark">Join</button>
+                    </div>
+                    <p class="mt-2 text-xs text-neutral-400">Get news, launches, and offers.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t border-bg-border pt-6 text-xs text-neutral-500">
+                © <span id="year"></span> All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast"
+        class="pointer-events-none fixed inset-x-0 bottom-4 z-[60] mx-auto hidden w-fit max-w-[90%] rounded-lg border border-bg-border bg-bg-card px-4 py-3 text-sm shadow-glow">
+        <div class="flex items-center gap-3">
+            <div class="h-10 w-10 overflow-hidden rounded-md ring-1 ring-bg-border">
+                <img id="toastImg" class="h-full w-full object-cover"
+                    src="https://picsum.photos/seed/pandalipi1/200/200" alt="">
+            </div>
+            <div>
+                <p class="font-medium">Added to cart</p>
+                <p class="text-xs text-neutral-400">Kamdhenu Cow & Calf Figurine Idol</p>
+            </div>
+            <a href="#"
+                class="ml-3 rounded-md bg-brand px-3 py-1 text-xs font-semibold text-black hover:bg-brand-dark">View
+                Cart</a>
+        </div>
+    </div>
+
+    <!-- Sticky mobile CTA -->
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-bg-border bg-bg/80 backdrop-blur md:hidden">
+        <div class="mx-auto max-w-7xl px-4 py-3">
+            <div class="flex items-center justify-between gap-3">
+                <div class="text-sm">
+                    <div id="rateDisplay2" class="font-semibold text-lg">₹240</div>
+                </div>
+                <button id="mobileBuy" class="flex-1 rounded-lg bg-brand py-2 text-sm font-semibold text-black">
+                    Buy now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back-to-top -->
+    <button id="toTop"
+        class="fixed bottom-36 right-6 md:bottom-24 md:right-10 z-40 hidden rounded-full border border-bg-border bg-bg-card p-2 shadow-soft hover:bg-bg-lift"
+        aria-label="Back to top">
+        ↑
+    </button>
+
+
+    <article>
+        <button class="fixed z-10 bottom-16 right-3  md:bottom-6 md:right-6 bg-gradient-to-r from-purple-600 to-pink-600 cursor-pointer
+             hover:from-purple-700 hover:to-pink-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 
+             focus:outline-none focus:ring-4 focus:ring-purple-300" type="button" onclick="handleOpenChatPopup()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 
+               4.418-4.03 8-9 8a9.863 9.863 0 
+               01-4.255-.949L3 20l1.395-3.72C3.512 
+               15.042 3 13.574 3 12c0-4.418 4.03-8 
+               9-8s9 3.582 9 8z"></path>
+            </svg>
+        </button>
+
+
+        <div id="chat-box" class="hidden fixed z-[500] flex flex-col bg-white shadow-2xl overflow-hidden transition-transform duration-300 ease-in-out
+            w-full h-full left-0 top-0 sm:w-96 sm:h-[470px] sm:bottom-24 sm:right-6 sm:left-auto sm:top-auto
+            sm:rounded-2xl">
+
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-4 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div>
+                        <h3 class="text-white font-semibold">Contact Us</h3>
+                        <p class="text-white text-opacity-80 text-sm">
+                            We're available on WhatsApp &amp; Instagram
+                        </p>
+                    </div>
+                </div>
+                <button class="text-white hover:text-gray-200 transition-colors 
+            focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50 rounded-full cursor-pointer"
+                    onclick="handleChatPopup()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex-1 p-2 sm:p-4 overflow-y-auto bg-gray-50 flex flex-col items-center justify-center">
+                <div class="flex flex-col items-center justify-center h-full w-full">
+                    <div
+                        class="bg-white p-4 rounded-2xl shadow-md flex flex-col items-center w-full max-w-xs sm:max-w-sm">
+                        <p class="text-gray-800 text-base font-semibold mb-2 text-center">
+                            Scan QR Code for WhatsApp
+                        </p>
+
+                        <div class="bg-white p-3 border-2 border-gray-200 rounded-lg inline-block mb-2">
+                            <a href="https://wa.me/7827967598" target="_blank" rel="noopener noreferrer"
+                                title="Open WhatsApp Chat">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/7827967598"
+                                    alt="WhatsApp QR Code" class="w-48 h-48" />
+                            </a>
+                        </div>
+
+                        <p class="text-xs text-gray-500 mb-2 text-center">
+                            Scan with your phone camera to chat on WhatsApp
+                        </p>
+                        <a href="https://wa.me/7827967598" target="_blank" rel="noopener noreferrer"
+                            class="mb-2 px-4 py-1 bg-green-500 text-white rounded-full text-xs hover:bg-green-600 transition">
+                            Open WhatsApp Chat
+                        </a>
+                        <button
+                            class="mt-2 px-4 py-1 cursor-pointer bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-xs hover:from-purple-700 hover:to-pink-700"
+                            onclick="handleChatPopup()">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-end">
+        <div id="modalContent" class="bg-white rounded-l-lg w-full md:w-1/2 lg:w-1/2 xl:w-1/3 p-3 min-[400px]:p-6 relative shadow-lg 
+                transform translate-x-full transition-transform duration-500 ease-in-out overflow-y-auto max-h-screen">
+
+            <!-- Close button -->
+            <span id="closeModal"
+                class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 cursor-pointer text-xl">&times;</span>
+
+            <!-- Grid: Left Form + Right Product -->
+            <div class="grid gap-6">
+                <!-- Right: Product Preview -->
+                <div class="flex flex-col items-center justify-center border-l border-gray-200 min-[400px]:pl-4">
+                    <div class="swiper w-80 h-80 max-[400px]:h-[250px] max-[400px]:w-[250px] rounded relative mb-10">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="assets/images/2.webp" alt="Product Image 1"
+                                    class="h-full object-contain rounded" /></div>
+                            <div class="swiper-slide"><img src="assets/images/1.webp" alt="Product Image 2"
+                                    class="h-full object-contain rounded" /></div>
+                            <div class="swiper-slide"><img src="assets/images/3.webp" alt="Product Image 3"
+                                    class="h-full object-contain rounded" /></div>
+                            <div class="swiper-slide"><img src="assets/images/4.webp" alt="Product Image 4"
+                                    class="h-full object-contain rounded" /></div>
+                        </div>
+
+                        <!-- Navigation buttons -->
+                        <div class="swiper-button-next text-yellow-500"></div>
+                        <div class="swiper-button-prev text-yellow-500"></div>
+                        <!-- Pagination dots -->
+                        <div class="swiper-pagination text-yellow-500"></div>
+                    </div>
+
+                    <div class="flex items-center gap-5">
+                        <div class="flex items-center rounded-lg border border-gray-300">
+                            <select id="qtySelect3"
+                                class="text-black px-3 py-2 bg-transparent text-center outline-none">
+                                <option class="text-black" value="1">1</option>
+                                <option class="text-black" value="2">2</option>
+                                <option class="text-black" value="3">3</option>
+                                <option class="text-black" value="4">4</option>
+                                <option class="text-black" value="5">5</option>
+                            </select>
+                        </div>
+                        <span id="rateDisplay3" class="font-semibold text-lg text-black">₹240</span>
+                    </div>
+                </div>
+
+                <!-- Left: Form -->
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4 text-black">Enter Your Details</h2>
+                    <form id="buyForm">
+                        <label class="block text-black font-semibold" for="name">Name</label>
+                        <input type="text" id="name" placeholder="Name" required
+                            class="min-w-0 w-full border mb-3 border-gray-300 text-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+                        <label class="block text-black font-semibold" for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email" required
+                            class="min-w-0 w-full border mb-3 border-gray-300 text-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+                        <label class="block text-black font-semibold" for="contact">Phone Number</label>
+                        <input type="number" id="contact" placeholder="Contact" required
+                            class="min-w-0 w-full border mb-3 border-gray-300 text-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+                        <label class="block text-black font-semibold" for="address">Address</label>
+                        <input type="text" id="address" placeholder="Address" required
+                            class="min-w-0 w-full border mb-3 border-gray-300 text-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+                        <label class="block text-black font-semibold" for="pincode1">Enter Your Pincode</label>
+                        <input type="number" id="pincode1" placeholder="Pincode" required
+                            class="min-w-0 w-full border mb-3 border-gray-300 text-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+                        <button type="submit" class="w-full bg-yellow-400 text-black py-2 rounded-md 
+                                        hover:bg-yellow-500 transition">
+                            Proceed to Pay
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Swiper script -->
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true, // infinite loop
+            // autoplay: {
+            //   delay: 2500,
+            //   disableOnInteraction: false,
+            // },
+            slidesPerView: 1,
+            spaceBetween: 10,
+            speed: 600,
+
+            // Enable navigation & pagination
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+
+
+    <script>
+        const popUp = document.getElementById("chat-box");
+        function handleOpenChatPopup() {
+            popUp.classList.toggle("hidden");
+        }
+        function handleChatPopup() {
+            popUp.classList.toggle("hidden");
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // Helpers
+            const $ = (sel, ctx = document) => ctx.querySelector(sel);
+            const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+            const show = (el) => { el.classList.remove('hidden'); };
+            const hide = (el) => { el.classList.add('hidden'); };
+
+            // Mobile menu
+            $('#menuBtn').addEventListener('click', () => $('#mobileNav').classList.toggle('hidden'));
+
+            // Gallery logic
+            const mainImage = $('#mainImage');
+            $$('.thumb').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const src = btn.getAttribute('data-img');
+                    mainImage.src = src;
+                    $$('.thumb').forEach(b => b.classList.remove('ring-2', 'ring-brand'));
+                    btn.classList.add('ring-2', 'ring-brand');
+                    $('#toastImg').src = src; // keep toast image synced
+                })
+            });
+
+            // Quantity stepper
+
+            const qtySelect = document.getElementById("qtySelect");
+
+            const rateDisplay = document.getElementById("rateDisplay");
+            const rateDisplay2 = document.getElementById("rateDisplay2");
+            const rateDisplay3 = document.getElementById("rateDisplay3");
+            // const floatingBuy = document.getElementById("floating-buy");
+            // Map quantity -> rate
+            const rates = {
+                1: 240,
+                2: 480,
+                3: 600,
+                4: 800,
+                5: 900
+            };
+
+            const buyBtn = document.getElementById("buyNow"); // your Buy Now button
+
+            const buyNowBtn = document.getElementById('buyNow1');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalContent = document.getElementById('modalContent');
+            const closeModal = document.getElementById('closeModal');
+            const buyForm = document.getElementById('buyForm');
+
+            // Update rate when quantity changes
+            let discountSpan = null;
+            let discountSpan2 = null;
+
+            qtySelect.addEventListener("change", () => {
+                const qty = qtySelect.value;
+                rateDisplay.textContent = `₹${rates[qty]}`;
+                rateDisplay2.textContent = `₹${rates[qty]}`;
+                // If an old span exists, remove it first
+                if (discountSpan) {
+                    discountSpan.remove();
+                    discountSpan = null;
+                }
+                if (discountSpan2) {
+                    discountSpan2.remove();
+                    discountSpan2 = null;
+                }
+
+                // Add crossed-out price only for qty === 3
+                if (qty === "3") {
+                    discountSpan = document.createElement("span");
+                    discountSpan.textContent = "₹720";
+                    discountSpan.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    discountSpan2 = document.createElement("span");
+                    discountSpan2.textContent = "₹720";
+                    discountSpan2.classList.add("line-through", "text-gray-400", "text-base");
+                    rateDisplay.after(discountSpan);
+                    rateDisplay2.after(discountSpan2);
+                } else if (qty === "4") {
+                    discountSpan = document.createElement("span");
+                    discountSpan.textContent = "₹860";
+                    discountSpan.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    discountSpan2 = document.createElement("span");
+                    discountSpan2.textContent = "₹860";
+                    discountSpan2.classList.add("line-through", "text-gray-400", "text-base");
+                    rateDisplay.after(discountSpan);
+                    rateDisplay2.after(discountSpan2);
+                } else if (qty === "5") {
+                    discountSpan = document.createElement("span");
+                    discountSpan.textContent = "₹1200";
+                    discountSpan.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    discountSpan2 = document.createElement("span");
+                    discountSpan2.textContent = "₹1200";
+                    discountSpan2.classList.add("line-through", "text-gray-400", "text-base");
+                    rateDisplay.after(discountSpan);
+                    rateDisplay2.after(discountSpan2);
+                }
+            });
+            
+            window.handleBuy3 = ()=>{
+                qtySelect.value = 3;
+                const qty = 3;
+                rateDisplay.textContent = `₹${rates[qty]}`;
+                rateDisplay2.textContent = `₹${rates[qty]}`;
+                // If an old span exists, remove it first
+                if (discountSpan) {
+                    discountSpan.remove();
+                    discountSpan = null;
+                }
+                if (discountSpan2) {
+                    discountSpan2.remove();
+                    discountSpan2 = null;
+                }
+
+                    discountSpan = document.createElement("span");
+                    discountSpan.textContent = "₹720";
+                    discountSpan.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    discountSpan2 = document.createElement("span");
+                    discountSpan2.textContent = "₹720";
+                    discountSpan2.classList.add("line-through", "text-gray-400", "text-base");
+                    rateDisplay.after(discountSpan);
+                    rateDisplay2.after(discountSpan2);
+            }
+
+
+            window.handleBuy5 = ()=>{
+                qtySelect.value = 5;
+                const qty = 5;
+                rateDisplay.textContent = `₹${rates[qty]}`;
+                rateDisplay2.textContent = `₹${rates[qty]}`;
+                // If an old span exists, remove it first
+                if (discountSpan) {
+                    discountSpan.remove();
+                    discountSpan = null;
+                }
+                if (discountSpan2) {
+                    discountSpan2.remove();
+                    discountSpan2 = null;
+                }
+
+                discountSpan = document.createElement("span");
+                discountSpan.textContent = "₹1200";
+                discountSpan.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                discountSpan2 = document.createElement("span");
+                discountSpan2.textContent = "₹1200";
+                discountSpan2.classList.add("line-through", "text-gray-400", "text-base");
+                rateDisplay.after(discountSpan);
+                rateDisplay2.after(discountSpan2);
+            }
+            // Open modal
+            // ---------------------------------------------------
+            let discountSpan3 = null;
+            const qtySelect3 = document.getElementById('qtySelect3');
+
+            buyNowBtn.addEventListener('click', () => {
+                // Show modal
+                document.body.classList.add("overflow-hidden"); // stop background scroll
+                modalOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('translate-x-full');
+                }, 10); // allow repaint
+
+                qtySelect3.value = qtySelect.value;
+
+                // Copy current price into modal
+                rateDisplay3.textContent = rateDisplay.textContent;
+
+                if (rateDisplay3.nextElementSibling && rateDisplay3.nextElementSibling.tagName === "SPAN") {
+                    rateDisplay3.nextElementSibling.remove();
+                }
+
+                discountSpan3 = document.createElement("span");
+                discountSpan3.classList.add("line-through", "text-gray-400", "text-base");
+                discountSpan3.textContent = discountSpan?.textContent;
+                rateDisplay3.after(discountSpan3);
+            });
+
+            qtySelect3.addEventListener("change", () => {
+                const qty = qtySelect3.value;
+                rateDisplay3.textContent = `₹${rates[qty]}`;
+                // If an old span exists, remove it first
+                if (discountSpan3) {
+                    discountSpan3.remove();
+                    discountSpan3 = null;
+                }
+
+                // Add crossed-out price only for qty === 3
+                if (qty === "3") {
+                    discountSpan3 = document.createElement("span");
+                    discountSpan3.textContent = "₹720";
+                    discountSpan3.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    rateDisplay3.after(discountSpan3);
+                } else if (qty === "4") {
+                    discountSpan3 = document.createElement("span");
+                    discountSpan3.textContent = "₹860";
+                    discountSpan3.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    rateDisplay3.after(discountSpan3);
+                } else if (qty === "5") {
+                    discountSpan3 = document.createElement("span");
+                    discountSpan3.textContent = "₹1200";
+                    discountSpan3.classList.add("ml-2", "line-through", "text-gray-400", "text-base");
+                    rateDisplay3.after(discountSpan3);
+                }
+            });
+
+            $('#mobileBuy').addEventListener('click', () => {
+                modalOverlay.classList.remove('hidden');
+                document.body.classList.add("overflow-hidden"); // stop background scroll
+                setTimeout(() => {
+                    modalContent.classList.remove('translate-x-full');
+                }, 10); // allow repaint
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', () => {
+                modalContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    modalOverlay.classList.add('hidden');
+                    document.body.classList.remove("overflow-hidden"); // restore scroll
+                }, 500); // match transition duration
+
+                document.getElementById('name').value = "";
+                document.getElementById('email').value = "";
+                document.getElementById('contact').value = "";
+                document.getElementById('address').value = "";
+                document.getElementById('pincode1').value = "";
+            });
+
+            // Close modal on clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    modalContent.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        modalOverlay.classList.add('hidden');
+                        document.body.classList.remove("overflow-hidden"); // restore scroll
+                    }, 500); // match transition duration
+                }
+            });
+
+            // Submit form
+            buyForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+
+                // Collect field values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const contact = document.getElementById('contact').value.trim();
+                const address = document.getElementById('address').value.trim();
+                const pincode = document.getElementById('pincode1').value.trim();
+                const quantity = document.getElementById('qtySelect3').value;
+                // Custom validation
+                if (!name) {
+                    alert("Name cannot be empty");
+                    return;
+                }
+                if (email.length < 8 || !/\S+@\S+\.\S+/.test(email)) {
+                    alert("Enter a valid email (minimum 8 characters)");
+                    return;
+                }
+                if (!/^\d{8}$|^\d{10}$/.test(contact)) {
+                    alert("Contact must be exactly 8 or 10 digits");
+                    return;
+                }
+                if (!address) {
+                    alert("Address cannot be empty");
+                    return;
+                }
+                if (!(pincode.length === 6)) {
+                    alert("Pincode must be exactly 6 digits");
+                    return;
+                }
+
+                // Prepare data if validation passes
+                const data = {
+                    name,
+                    email,
+                    contact,
+                    address,
+                    quantity,
+                    pincode,
+                    amount: rates[quantity]
+                };
+
+                try {
+                    // 1. Create Razorpay order via backend
+                    const response = await fetch("/api/create-order", {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok) throw new Error(result.error || "Order creation failed");
+
+                    // 2. Open Razorpay checkout
+                    const order = result.order;
+
+                    const options = {
+                        key: "rzp_live_RIelr9krjSEJuM", // or dynamically pass from backend
+                        amount: order.amount,
+                        currency: order.currency,
+                        name: "Casabells",
+                        description: "Purchase Description",
+                        order_id: order.id,
+                        handler: function (response) {
+                            // alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                            window.location.href = `thanks.html?name=${data.name}&email=${data.email}&amount=${data.amount}`;
+                        },
+                        prefill: {
+                            name: data.name,
+                            email: data.email,
+                            contact: data.contact
+                        },
+                        notes: order.notes,
+                        theme: { color: "#3399cc" }
+                    };
+
+                    const rzp = new Razorpay(options);
+                    rzp.open();
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error creating order. Check console for details.');
+                }
+
+                modalContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    modalOverlay.classList.add('hidden');
+                    document.body.classList.remove("overflow-hidden"); // restore scroll
+                }, 500); // match transition duration
+                // TODO: Call Razorpay API or your backend here with `data`
+            });
+
+            let cartCount = 0;
+            const cartBadge = $('#cartCount');
+            let toastTimer = null;
+            function triggerToast() {
+                const t = $('#toast');
+                show(t);
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => hide(t), 2400);
+            }
+            // $('#addToCart').addEventListener('click', () => {
+            //     cartCount = qtySelect.value;
+            //     cartBadge.textContent = cartCount;
+            //     cartBadge.classList.add('animate-bounce');
+            //     setTimeout(() => cartBadge.classList.remove('animate-bounce'), 600);
+            //     triggerToast();
+            // });
+
+            // Pincode checker (mock)
+            $('#checkPin').addEventListener('click', () => {
+                const p = $('#pincode').value.trim();
+                const out = $('#pinResult');
+                if (/^\d{6}$/.test(p)) {
+                    out.textContent = `Delivery available to ${p}. Estimated 3–5 days.`;
+                    out.class = 'mt-2 text-xs text-emerald-300';
+                } else {
+                    out.textContent = 'Please enter a valid 6-digit pincode.';
+                    out.class = 'mt-2 text-xs text-amber-300';
+                }
+            });
+
+            // Back to top
+            const toTop = $('#toTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 600) show(toTop); else hide(toTop);
+            });
+            toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // Reviews data + render
+            const reviews = [
+                { name: 'Siron Mehta', verified: false, date: '12 Aug 2025', stars: 5, text: 'Beautiful craftsmanship and the script is perfectly engraved. Loved the velvet pouch.' },
+                { name: 'Sunil Jain', verified: true, date: '05 Aug 2025', stars: 5, text: 'It is truly amazing. A great devotional gift.' },
+                { name: 'Praveen Pawar', verified: true, date: '31 Jul 2025', stars: 4, text: 'W/A – Good finish, fast delivery.' },
+                { name: 'Aakriti Talreja', verified: false, date: '22 Jul 2025', stars: 5, text: 'Best awarding and gifting article! We paired this with our roli & akshat set.' },
+                { name: 'Priti Nigam', verified: true, date: '09 Jul 2025', stars: 5, text: 'A great traditional way of respecting our shlokas.' },
+                { name: 'Rohit Sharma', verified: false, date: '02 Jul 2025', stars: 4, text: 'Nice packaging. Would love a larger size too.' },
+                { name: 'M. Trivedi', verified: true, date: '28 Jun 2025', stars: 5, text: 'Authentic look and feel. Highly recommend.' },
+                { name: 'K. Agarwal', verified: false, date: '24 Jun 2025', stars: 5, text: 'Gifted to my parents. They were delighted.' },
+            ];
+            let reviewIndex = 0;
+            let filterVerified = false;
+            const reviewList = $('#reviewList');
+
+            function starRow(n) {
+                const full = Math.round(n);
+                let row = '';
+                for (let i = 1; i <= 5; i++) {
+                    const cls = i <= full ? 'text-brand' : 'text-neutral-600';
+                    row += `<svg class="h-4 w-4 ${cls}" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 0 0-1.175 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z"/></svg>`;
+                }
+                return row;
+            }
+
+            function renderReviews(initial = false) {
+                if (initial) {
+                    reviewList.innerHTML = '';
+                    reviewIndex = 0;
+                }
+                const chunk = reviews.filter(r => filterVerified ? r.verified : true).slice(reviewIndex, reviewIndex + 3);
+                reviewIndex += chunk.length;
+                for (const r of chunk) {
+                    const item = document.createElement('li');
+                    item.class = 'rounded-lg border border-bg-border bg-bg-card p-4';
+                    item.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="font-medium">${r.name} ${r.verified ? '<span class="ml-2 rounded bg-emerald-500/15 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">Verified</span>' : ''}</div>
+                        <div class="text-xs text-neutral-500">${r.date}</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-1">${starRow(r.stars)}</div>
+                    <p class="mt-2 text-sm text-neutral-300">${r.text}</p>
+                `;
+                    reviewList.appendChild(item);
+                }
+                if (reviewIndex >= reviews.filter(r => filterVerified ? r.verified : true).length) hide($('#loadMore')); else show($('#loadMore'));
+            }
+
+            $('#filterAll').addEventListener('click', () => { filterVerified = false; renderReviews(true); });
+            $('#filterVerified').addEventListener('click', () => { filterVerified = true; renderReviews(true); });
+            $('#loadMore').addEventListener('click', () => renderReviews());
+            renderReviews(true);
+
+            // Recs scrollers
+            // const recsTrack = $('#recsTrack');
+            // $('#scrollLeft').addEventListener('click', () => recsTrack.scrollBy({ left: -320, behavior: 'smooth' }));
+            // $('#scrollRight').addEventListener('click', () => recsTrack.scrollBy({ left: 320, behavior: 'smooth' }));
+
+            // Year
+            $('#year').textContent = new Date().getFullYear();
+
+        })
+    </script>
+
+    <script>
+
+
+        const rates = {
+            1: 240,
+            2: 480,
+            3: 600,
+            4: 800,
+            5: 900
+        };
+        // document.getElementById("buyNow1").addEventListener("click", () => {
+        //     // Copy current qty into modal
+
+        // });
+
+
+    </script>
+
+</body>
+
+</html>
