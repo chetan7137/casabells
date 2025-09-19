@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
 
     // Create order in Razorpay
     const order = await razorpay.orders.create({
-      amount: 1 * 100, // in paise
+      amount: Number(amount) * 100, // in paise
       currency: "INR",
       receipt: "receipt_" + Date.now(),
       notes: {
