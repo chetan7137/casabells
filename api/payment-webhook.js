@@ -6,6 +6,9 @@ module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ success: false, message: "Method not allowed" });
   }
+// testing
+  console.log("Incoming webhook headers:", req.headers);
+console.log("Incoming webhook raw body:", req.body);
 
   try {
     const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
@@ -19,10 +22,10 @@ module.exports = async (req, res) => {
       .update(body)
       .digest("hex");
 
-    // if (expectedSignature !== signature) {
-    //   console.error("Invalid webhook signature");
-    //   return res.status(400).json({ success: false, message: "Invalid signature" });
-    // }
+    if (expectedSignature !== signature) {
+      console.error("Invalid webhook signature");
+      return res.status(400).json({ success: false, message: "Invalid signature" });
+    }
 
     const event = req.body.event;
 
