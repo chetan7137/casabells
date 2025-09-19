@@ -8,15 +8,11 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // ----- DEBUG LOGGING -----
     console.log("Incoming webhook headers:\n", JSON.stringify(req.headers, null, 2));
     console.log("Incoming webhook body:\n", JSON.stringify(req.body, null, 2));
 
-    // ----- DETERMINE IF THIS IS A TEST -----
-    // Send {"testEmail": true} in the POST body to simulate a Razorpay webhook
     const isTest = req.body.testEmail === true;
 
-    // ----- SIGNATURE VERIFICATION -----
     if (!isTest) {
       const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
       const signature = req.headers["x-razorpay-signature"];
@@ -35,7 +31,6 @@ module.exports = async (req, res) => {
       console.log("Test mode enabled — skipping signature verification");
     }
 
-    // ----- GET PAYMENT DATA -----
     const event = req.body.event || "payment.captured";
     const payment = req.body.payload?.payment?.entity || {
       id: "test_pay",
@@ -54,37 +49,23 @@ module.exports = async (req, res) => {
       }
     };
 
-    // ----- CALL EMAIL SERVICE -----
     if (event === "payment.captured" || isTest) {
-      try {
-        console.log("Calling emailService with params:\n", JSON.stringify({
-          to: payment.notes.customer_email || payment.email,
-          name: payment.notes.customer_name,
-          quantity: payment.notes.quantity,
-          amount: payment.notes.product_amount || payment.amount,
-          address: payment.notes.customer_address,
-          pincode: payment.notes.customer_pincode,
-          contact: payment.notes.customer_contact || payment.contact,
-          orderId: payment.order_id,
-          paymentId: payment.id
-        }, null, 2));
+      console.log("Calling emailService with params:", payment.notes);
 
-        await emailService(
-          payment.notes.customer_email || payment.email,
-          payment.notes.customer_name,
-          payment.notes.quantity,
-          payment.notes.product_amount || payment.amount,
-          payment.notes.customer_address,
-          payment.notes.customer_pincode,
-          payment.notes.customer_contact || payment.contact,
-          payment.order_id,
-          payment.id
-        );
+      // ✅ await ensures Vercel waits until email is sent
+      await emailService(
+        payment.notes.customer_email || payment.email,
+        payment.notes.customer_name,
+        payment.notes.quantity,
+        payment.notes.product_amount || payment.amount,
+        payment.notes.customer_address,
+        payment.notes.customer_pincode,
+        payment.notes.customer_contact || payment.contact,
+        payment.order_id,
+        payment.id
+      );
 
-        console.log("Email sent successfully for payment:", payment.id);
-      } catch (emailErr) {
-        console.error("EmailService error:", emailErr);
-      }
+      console.log("Email sent successfully for payment:", payment.id);
     }
 
     return res.status(200).json({ success: true });
