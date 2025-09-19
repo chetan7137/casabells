@@ -1,6 +1,6 @@
 const Razorpay = require("razorpay");
 require("dotenv").config();
-const { emailService } = require("../utils/emailService");
+
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -40,9 +40,9 @@ module.exports = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid amount" });
     }
 
-    // ✅ Create order
+    // Create order in Razorpay
     const order = await razorpay.orders.create({
-      amount: Number(amount) * 100,
+      amount: Number(amount) * 100, // in paise
       currency: "INR",
       receipt: "receipt_" + Date.now(),
       notes: {
@@ -56,12 +56,11 @@ module.exports = async (req, res) => {
       },
     });
 
-    // Send email
-    emailService(email, name, quantity, amount, address, pincode, contact);
-
     return res.status(200).json({ success: true, order });
   } catch (err) {
-    console.error(err);
+    console.error("Create Order Error:", err);
     return res.status(500).json({ success: false, error: err.message });
   }
 };
+
+
