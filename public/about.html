@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us - Casabells</title>
+  <!-- Tailwind Play CDN for quick prototyping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+          darkMode: 'class',
+          theme: {
+              extend: {
+                  colors: {
+                      bg: {
+                          DEFAULT: '#0b0b0b',
+                          soft: '#121212',
+                          card: '#151515',
+                          lift: '#1b1b1b',
+                          border: '#262626'
+                      },
+                      brand: { DEFAULT: '#facc15', dark: '#ca8a04' },
+                      accent: '#22d3ee',
+                  },
+                  boxShadow: {
+                      'soft': '0 8px 24px rgba(0,0,0,.25)',
+                      'glow': '0 0 0 3px rgba(250, 204, 21, .25)'
+                  }
+              }
+          }
+      }
+  </script>
+  <style>
+    .glass {
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-800 antialiased">
+
+<header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-bg/70 bg-bg/80 border-b border-bg-border">
+  <div class="mx-auto max-w-7xl px-4">
+    <div class="flex items-center justify-between py-3">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-semibold tracking-wide text-white">Casabells</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm text-neutral-300">
+        <a class="hover:text-white" href="/index.html">Home</a>
+        <a class="hover:text-white" href="#">Shop</a>
+        <a class="hover:text-white" href="#">Blog</a>
+        <a class="hover:text-white" href="#">Tracking</a>
+        <a class="hover:text-white" href="#">Contact</a>
+        <a class="hover:text-white" href="#">Corporate & Bulk</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <button id="menuBtn" class="md:hidden p-2 rounded-md hover:bg-bg-lift" aria-label="Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileNav" class="md:hidden hidden pb-3">
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-300">
+        <a class="hover:text-white" href="#">Home</a>
+        <a class="hover:text-white" href="#">Shop</a>
+        <a class="hover:text-white" href="#">Blog</a>
+        <a class="hover:text-white" href="#">Tracking</a>
+        <a class="hover:text-white" href="#">Corporate & Bulk</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+  <main class="container mx-auto px-6 lg:px-12 mt-10">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+      <!-- Sidebar / TOC -->
+      <aside class="lg:col-span-1 lg:sticky lg:top-8 self-start">
+        <div class="glass p-4 rounded-2xl border border-white/30 shadow-md">
+          <h2 class="text-sm font-semibold text-slate-700 mb-3">On this page</h2>
+          <nav class="flex flex-col gap-2 text-sm text-slate-600">
+            <a href="#mission" class="py-2 px-3 rounded hover:bg-indigo-50">Our Mission</a>
+            <a href="#values" class="py-2 px-3 rounded hover:bg-indigo-50">Our Values</a>
+            <a href="#contact" class="py-2 px-3 rounded hover:bg-indigo-50">Contact</a>
+          </nav>
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-gradient-to-br from-white via-indigo-50 to-white/60 border border-white/40 shadow-inner">
+          <h3 class="text-xs font-semibold text-indigo-700">Quick summary</h3>
+          <p class="mt-2 text-sm text-slate-600">Casabells brings spirituality, tradition, and elegance together through Kamdhenu Cow idols — authentic, affordable, and trustworthy.</p>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <article class="lg:col-span-3 space-y-8">
+
+        <section id="mission" class="p-6 rounded-2xl glass border border-white/20 shadow-lg">
+          <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
+          <p class="text-slate-600 mb-4">
+            At Casabells, we bring spirituality, tradition, and elegance together through our exclusive collection of Kamdhenu Cow idols.
+          </p>
+          <p class="text-slate-600 mb-4">
+            The Kamdhenu Cow, revered in Hindu culture as the divine wish-fulfilling cow, symbolizes prosperity, peace, and abundance. Our mission is to make this sacred symbol accessible to every home, temple, and workplace. Each piece is crafted with care, reflecting not just artistry but also deep spiritual significance.
+          </p>
+          <p class="text-slate-600">
+            Whether you are looking to enhance the positivity of your home, add auspicious energy to your office, or gift something meaningful to your loved ones, Casabells offers a collection that goes beyond decor — it brings blessings, heritage, and devotion into everyday life.
+          </p>
+        </section>
+
+        <section id="values" class="space-y-4">
+          <h2 class="text-2xl font-semibold mb-4">Our Values</h2>
+          <div class="p-6 rounded-xl bg-white border shadow-sm space-y-3">
+            <p class="text-slate-600"><strong>Authenticity</strong> – Offering genuine, high-quality Kamdhenu Cow idols.</p>
+            <p class="text-slate-600"><strong>Affordability</strong> – Spirituality should be within everyone’s reach.</p>
+            <p class="text-slate-600"><strong>Trust</strong> – Secure shopping, safe delivery, and dedicated support.</p>
+          </div>
+          <p class="mt-4 text-slate-600">
+            At Casabells, we don’t just sell products — we deliver faith, tradition, and positivity straight to your doorstep.
+          </p>
+          <p class="mt-2 text-slate-600 font-semibold">Bring home the blessings of Kamdhenu with Casabells today.</p>
+        </section>
+
+        <section id="contact" class="p-6 rounded-2xl glass border border-white/20 shadow-lg">
+          <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+          <p class="text-slate-600 mb-2">Questions, requests, or concerns? Reach out:</p>
+          <ul class="text-sm text-slate-700 space-y-1 mb-4">
+            <li><strong>Email:</strong> <a class="text-indigo-600 hover:underline" href="mailto:casabells.in@gmail.com">casabells.in@gmail.com</a></li>
+            <li><strong>Phone:</strong> 7827967598</li>
+          </ul>
+          <a href="mailto:casabells.in@gmail.com" class="inline-flex items-center justify-center w-full py-2 px-4 rounded-lg bg-indigo-600 text-white font-medium shadow hover:brightness-105">Contact Support</a>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+<footer class="bg-[rgb(11_11_11)] mt-20 border-t border-bg-border">
+  <div class="mx-auto max-w-7xl px-4 py-10">
+    <div class="grid gap-8 md:grid-cols-4">
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="text-white font-semibold tracking-wide">Casabells</span>
+        </div>
+        <div class="flex gap-3 text-neutral-400">
+          <a class="hover:text-white" href="#">Instagram</a>
+          <a class="hover:text-white" href="#">YouTube</a>
+          <a class="hover:text-white" href="#">X</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="mb-3 font-semibold text-white">Quick links</h4>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          <li><a class="hover:text-white" href="/terms-and-conditions.html">Terms & Conditions</a></li>
+          <li><a class="hover:text-white" href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a class="hover:text-white" href="/contact.html">Contact Us</a></li>
+          <li><a class="hover:text-white" href="/refund-policy.html">Refund Policy</a></li>
+          <li><a class="hover:text-white" href="/about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="mb-3 font-semibold text-white">Stay updated</h4>
+        <div class="flex gap-2">
+          <input type="email" placeholder="Email address" class="w-full rounded-lg border border-bg-border bg-transparent px-3 py-2 text-sm outline-none focus:border-brand/60" />
+          <button class="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-black hover:bg-brand-dark">Join</button>
+        </div>
+        <p class="mt-2 text-xs text-neutral-400">Get news, launches, and offers.</p>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-bg-border pt-6 text-xs text-neutral-500">
+      © <span id="year"></span> All rights reserved.
+    </div>
+  </div>
+</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileNav').classList.toggle('hidden'));    
+  </script>
+
+</body>
+</html>
