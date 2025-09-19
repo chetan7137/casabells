@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
       contact: "9999999999",
       amount: 1000,
       notes: {
-        customer_email: "chetan.010.1999@gmail.com",
+        customer_email: "chetan010.1999@gmail.com",
         customer_name: "Chetan Sharma",
         quantity: 1,
         product_amount: 1000,
@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
           paymentId: payment.id
         }, null, 2));
 
-        await emailService(
+        emailService(
           payment.notes.customer_email || payment.email,
           payment.notes.customer_name,
           payment.notes.quantity,
