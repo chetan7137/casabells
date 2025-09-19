@@ -40,11 +40,11 @@ module.exports = async (req, res) => {
     const payment = req.body.payload?.payment?.entity || {
       id: "test_pay",
       order_id: "test_order",
-      email: "chetan.010.1999@gmail.com",
+      email: "chetan010.1999@gmail.com",
       contact: "9999999999",
       amount: 1000,
       notes: {
-        customer_email: "chetan010.1999@gmail.com",
+        customer_email: "chetan0101999@gmail.com",
         customer_name: "Chetan Sharma",
         quantity: 1,
         product_amount: 1000,
