@@ -58,7 +58,7 @@ const emailService = (email, name, quantity, amount, address, pincode, contact) 
     };
 
     const transporter = nodemailer.createTransport({
-        service: "gmail.com",
+        service: "gmail",
         auth: {
             user: process.env.ADMIN_EMAIL,
             pass: process.env.APP_PWD  // Make sure you're using an app password if 2FA is enabled
