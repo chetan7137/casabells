@@ -67,9 +67,9 @@ const emailService = (email, name, quantity, amount, address, pincode, contact) 
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            // console.log(error);
+            console.error("Email failed to send:", error);
         } else {
-            // console.log('Email sent: ' + info.response);
+            console.log("Email sent successfully:", info.response);
         }
     });
 }
