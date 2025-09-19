@@ -1006,6 +1006,20 @@
                 setTimeout(() => {
                     modalContent.classList.remove('translate-x-full');
                 }, 10); // allow repaint
+
+                qtySelect3.value = qtySelect.value;
+
+                // Copy current price into modal
+                rateDisplay3.textContent = rateDisplay.textContent;
+
+                if (rateDisplay3.nextElementSibling && rateDisplay3.nextElementSibling.tagName === "SPAN") {
+                    rateDisplay3.nextElementSibling.remove();
+                }
+
+                discountSpan3 = document.createElement("span");
+                discountSpan3.classList.add("line-through", "text-gray-400", "text-base");
+                discountSpan3.textContent = discountSpan?.textContent;
+                rateDisplay3.after(discountSpan3);                
             });
 
             // Close modal
