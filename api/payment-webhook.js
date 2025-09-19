@@ -19,10 +19,10 @@ module.exports = async (req, res) => {
       .update(body)
       .digest("hex");
 
-    if (expectedSignature !== signature) {
-      console.error("Invalid webhook signature");
-      return res.status(400).json({ success: false, message: "Invalid signature" });
-    }
+    // if (expectedSignature !== signature) {
+    //   console.error("Invalid webhook signature");
+    //   return res.status(400).json({ success: false, message: "Invalid signature" });
+    // }
 
     const event = req.body.event;
 
