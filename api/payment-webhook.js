@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
       contact: "9999999999",
       amount: 1000,
       notes: {
-        customer_email: "chetan0101999@gmail.com",
+        customer_email: "chetan010.1999@gmail.com",
         customer_name: "Chetan Sharma",
         quantity: 1,
         product_amount: 1000,
