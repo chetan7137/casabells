@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
     });
 
     // Send email
-    await emailService(email, name, quantity, amount, address, pincode, contact);
+    emailService(email, name, quantity, amount, address, pincode, contact);
 
     return res.status(200).json({ success: true, order });
   } catch (err) {
