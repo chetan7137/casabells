@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
           paymentId: payment.id
         }, null, 2));
 
-        emailService(
+        await emailService(
           payment.notes.customer_email || payment.email,
           payment.notes.customer_name,
           payment.notes.quantity,
