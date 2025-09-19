@@ -1109,7 +1109,7 @@
                         order_id: order.id,
                         handler: function (response) {
                             // alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-                            window.location.href = `thanks.html?name=${data.name}&email=${data.email}&amount=${data.amount}`;
+                            window.location.href = `https://casabells.vercel.app/thanks.html?name=${data.name}&email=${data.email}&amount=${data.amount}`;
                         },
                         prefill: {
                             name: data.name,
